@@ -9,14 +9,15 @@ const tokenSecret = "my-token-secret"
 
 const middleware = require('../middlewares')
 
-router.get('/login', (req, res) => {
+router.post('/login', (req, res) => {
+    console.log(req.body)
     User.findOne({email: req.body.email})
         .then(user => {
             if(!user) res.status(404).json({error: 'no user with that email found'})
             else {
                 bcrypt.compare(req.body.password, user.password, (error, match) => {
                     if (error) res.status(500).json(error)
-                    else if (match) res.status(200).json({token: generateToken(user)})
+                    else if (match) res.status(200).json({token: generateToken(user), user})
                     else res.status(403).json({error: 'passwords do not match'})
                 })
             }
@@ -27,10 +28,16 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
+    console.log(req.body)
     bcrypt.hash(req.body.password, rounds, (error, hash) => {
         if (error) res.status(500).json(error)
         else {
-            const newUser =  User({email: req.body.email, password: hash})
+            const newUser =  User({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: hash})
+
             newUser.save()
                 .then(user => {
                     res.status(200).json({token: generateToken(user)})

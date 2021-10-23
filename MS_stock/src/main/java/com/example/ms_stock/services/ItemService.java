@@ -41,9 +41,9 @@ public class ItemService {
         return repository.save(item);
     }
 
-    public String deleteItem(int id) {
+    public List<Item> deleteItem(int id) {
         repository.deleteById(id);
-        return "item deleted: " + id;
+        return repository.findAll();
     }
 
 }

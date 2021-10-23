@@ -40,7 +40,7 @@ public class ItemController {
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> deleteItem(@PathVariable(value = "id") int id){
+    public ResponseEntity<?> deleteItem(@PathVariable(value = "id") int id){
         return new ResponseEntity<>(itemService.deleteItem(id), HttpStatus.OK);
     }
 
