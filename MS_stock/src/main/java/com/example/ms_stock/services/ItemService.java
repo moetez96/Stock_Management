@@ -25,14 +25,15 @@ public class ItemService {
         return repository.findById(id).get();
     }
 
-    public Item updateItem(int id, Item newItem) {
+    public List<Item> updateItem(int id, Item newItem) {
         Item item = repository.findById(id).get();
         item.setName(newItem.getName());
         item.setCategory(newItem.getCategory());
         item.setDescription(newItem.getDescription());
         item.setPrice(newItem.getPrice());
         item.setCurrentStock(newItem.getCurrentStock());
-        return repository.save(item);
+        repository.save(item);
+        return repository.findAll();
     }
 
     public Item updateStock(int id, int newStock) {

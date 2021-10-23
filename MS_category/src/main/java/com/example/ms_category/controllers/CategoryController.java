@@ -26,20 +26,20 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<?> createCategory(@RequestBody Category category) {
         return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Category> updateCategory(@PathVariable(value = "id") int id,
+    public ResponseEntity<?> updateCategory(@PathVariable(value = "id") int id,
                                                    @RequestBody Category category) {
         return new ResponseEntity<>(categoryService.updateCategory(id, category), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> deleteCategory(@PathVariable(value = "id") int id) {
+    public ResponseEntity<?> deleteCategory(@PathVariable(value = "id") int id) {
         return new ResponseEntity<>(categoryService.deleteCategory(id), HttpStatus.OK);
     }
 }

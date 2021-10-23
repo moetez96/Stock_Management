@@ -4,6 +4,7 @@ import {
    ADD_ITEM,
    ERROR_ADD_ITEM,
    DELETE_ITEM,
+   UPDATE_ITEM,
 } from "./types";
 
 const URL = "http://localhost:8763"
@@ -47,6 +48,22 @@ export const deleteItems = (id) => async (dispatch) => {
         console.log(data)
         dispatch({
             type: DELETE_ITEM,
+            payload: data,
+        });
+    } catch (e) {
+        dispatch({
+            type: 'ERROR',
+        });
+    }
+};
+
+export const updateItems = (id, item) => async (dispatch) => {
+    console.log(id)
+    try {
+        const {data} = await axios.put(URL + `/item-service/api/items/${id}`, item);
+        console.log(data)
+        dispatch({
+            type: UPDATE_ITEM,
             payload: data,
         });
     } catch (e) {

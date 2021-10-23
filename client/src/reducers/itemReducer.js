@@ -2,7 +2,8 @@ import {
     ALL_ITEMS,
     ADD_ITEM,
     ERROR_ADD_ITEM,
-    DELETE_ITEM
+    DELETE_ITEM,
+    UPDATE_ITEM
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -25,6 +26,12 @@ const INITIAL_STATE = {
           ...state, 
           item: payload 
         };
+        case UPDATE_ITEM:
+          return { 
+            ...state, 
+            loading: false, 
+            items: payload 
+          };
         case DELETE_ITEM:
         return { 
           ...state,

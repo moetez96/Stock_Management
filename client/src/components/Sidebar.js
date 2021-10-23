@@ -24,8 +24,7 @@ const Sidebar = () => {
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Categories</span></a>
+                        <Link class="nav-link px-0" to="/categories"><span class="d-none d-sm-inline">Categories</span></Link>
                     </li>
                 </ul>
             </div>

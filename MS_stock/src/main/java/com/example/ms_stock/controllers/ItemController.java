@@ -33,7 +33,7 @@ public class ItemController {
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Item> updateItem(@PathVariable(value = "id") int id,
+    public ResponseEntity<?> updateItem(@PathVariable(value = "id") int id,
                                                    @RequestBody Item item){
         return new ResponseEntity<>(itemService.updateItem(id, item), HttpStatus.OK);
     }

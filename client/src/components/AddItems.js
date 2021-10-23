@@ -1,41 +1,50 @@
-import React , { useState }from "react";
+import React , { useState, useEffect }from "react";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector, connect} from "react-redux";
 import {addItems} from "../actions/itemAction";
 import { useHistory } from "react-router-dom";
+import {getAllCategories} from "../actions/categoryAction";
 
-const AddItems = () => {
+const AddItems = ({getAllCategories, categories}) => {
 
   const error_add_item = useSelector(state => state.itemReducer.error_add_item);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(error_add_item)
+  
+  console.log(error_add_item);
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [currentStock, setCurrentStock] = useState('');
+
+  useEffect(() => {
+    getAllCategories()
+  }, [dispatch]);
+
+  console.log(categories)
 
   const handleNameChange = (e) => {
-    setName(e.target.value)
+    setName(e.target.value);
   }
   
   const handleDescriptionChange = (e) => {
-    setDescription(e.target.value)
+    setDescription(e.target.value);
   }
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value)
+    setCategory(e.target.value);
   }
 
   const handlePriceChange = (e) => {
-    setPrice(e.target.value)
+    setPrice(e.target.value);
   }
 
-  const handleQuantityChange = (e) => {
-    setQuantity(e.target.value)
+  const handleCurrentStockChange = (e) => {
+    setCurrentStock(e.target.value);
   }
   
   const handleOnSubmit = (e) => {
@@ -45,56 +54,58 @@ const AddItems = () => {
         description,
         category,
         price,
-        quantity
-      }
+        currentStock
+      };
       dispatch(addItems(data)).then(() => {
-        history.push('/list_items')
+        history.push('/list_items');
     })
   } 
 
     return (
       <div style={{marginLeft: 420}}>
         <Card style={{ width: '350px' }}>
-        <Card.Body>
-          <Card.Title>Add Product</Card.Title>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Product Name</Form.Label>
-              <Form.Control type="text" placeholder="Product Name" onChange={handleNameChange} />
-            </Form.Group>
+          <Card.Body>
+            <Card.Title>Add Product</Card.Title>
+            <Form>
+              <Form.Group className="mb-3">
+                <Form.Label>Product Name</Form.Label>
+                <Form.Control type="text" placeholder="Product Name" onChange={handleNameChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Product Description</Form.Label>
-              <Form.Control type="text" placeholder="Product Description" onChange={handleDescriptionChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Product Description</Form.Label>
+                <Form.Control type="text" placeholder="Product Description" onChange={handleDescriptionChange} />
+              </Form.Group>
 
-            <Form.Label>Product Category</Form.Label>
-            <Form.Select aria-label="Floating label select example" onChange={handleCategoryChange} >
-              <option>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </Form.Select>
-            
-            <Form.Group className="mb-3">
-              <Form.Label>Product Price</Form.Label>
-              <Form.Control type="number" placeholder="Product Price" onChange={handlePriceChange} />
-            </Form.Group>
+              <Form.Label>Product Category</Form.Label>
+              <Form.Select aria-label="Floating label select example" onChange={handleCategoryChange} >
+                <option value='0'>Select Category</option>
+                {categories.map(categ => (                
+                  <option key={categ.id} value={categ.id}>{categ.name}</option>
+                ))}
+              </Form.Select>
+              
+              <Form.Group className="mb-3">
+                <Form.Label>Product Price</Form.Label>
+                <Form.Control type="number" placeholder="Product Price" onChange={handlePriceChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Product Quantity</Form.Label>
-              <Form.Control type="number" placeholder="Product Quantity" onChange={handleQuantityChange}  />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Product Quantity</Form.Label>
+                <Form.Control type="number" placeholder="Product Quantity" onChange={handleCurrentStockChange}  />
+              </Form.Group>
 
-            <Button variant="primary" onClick={handleOnSubmit}>
-              Add
-            </Button>
-          </Form>
-        </Card.Body>
+              <Button variant="primary" onClick={handleOnSubmit}>
+                Add
+              </Button>
+            </Form>
+          </Card.Body>
         </Card>
       </div>
         );
 
     }
-
-export default AddItems; 
+const mapStateToProps = (state) => ({
+      categories: state.categoryReducer.categories,
+  });
+export default connect(mapStateToProps, {getAllCategories})(AddItems); 

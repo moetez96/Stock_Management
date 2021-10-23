@@ -13,8 +13,9 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category addCategory(Category category) {
-        return categoryRepository.save(category);
+    public List<Category> addCategory(Category category) {
+        categoryRepository.save(category);
+        return categoryRepository.findAll();
     }
 
     public List<Category> findAll() {
@@ -25,15 +26,16 @@ public class CategoryService {
         return categoryRepository.findById(id).get();
     }
 
-    public Category updateCategory(int id, Category newCategory) {
+    public List<Category> updateCategory(int id, Category newCategory) {
         Category category = categoryRepository.findById(id).get();
         category.setName(newCategory.getName());
-        return categoryRepository.save(category);
+        categoryRepository.save(category);
+        return categoryRepository.findAll();
     }
 
-    public String deleteCategory(int id) {
+    public List<Category> deleteCategory(int id) {
         categoryRepository.deleteById(id);
-        return "category deleted: " + id;
+        return categoryRepository.findAll();
     }
 
 }
