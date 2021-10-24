@@ -18,6 +18,8 @@ services:
       zuul.routes.client-service.url: http://client-service:8085
       zuul.routes.order-service.url: http://order-service:8083
     image: "zuul" 
+    depends_on:
+          - eurekaserver
 
   item-service:
     build: ./MS_stock/
@@ -26,6 +28,8 @@ services:
     environment:
       eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
     image: "item-service"
+    depends_on:
+      - zuul
 
   category-service:
     build: ./MS_category/
@@ -34,6 +38,8 @@ services:
     environment:
       eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
     image: "category-service"    
+    depends_on:
+      - zuul
 
   user-service:
     build: ./MS_user/
@@ -42,7 +48,8 @@ services:
     environment:
       eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
     image: "user-service"
-
+    depends_on:
+      - zuul
 
   order-service:
     build: ./order/
@@ -51,7 +58,9 @@ services:
     environment:
       eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
     image: "order-service"
-  
+    depends_on:
+      - zuul
+
   client-service:
     build: ./ms_client/
     ports:
@@ -59,3 +68,5 @@ services:
     environment:
       eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
     image: "client-service"
+    depends_on:
+      - zuul

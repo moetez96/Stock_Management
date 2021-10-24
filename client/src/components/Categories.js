@@ -62,6 +62,8 @@ const Categories = ({getAllCategories, categories}) => {
         dispatch(updateCategory(id, category))
     } 
 
+    console.log("ff ", categoriesList)
+
     return (
         <div>
             <h1 style={{float: 'left'}}>List Category</h1>

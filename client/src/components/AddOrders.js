@@ -64,25 +64,26 @@ useEffect(() => {
       e.preventDefault();
       
        let objet = items.find(it => it.id == item )
-      console.log("obj",items)
-      console.log("loula",item)
-      console.log("aaa",objet)
-      const data = {
-        dateMvt , 
-        quantite ,
-         typeOrder , 
-         item ,
-         client
+        console.log("obj",items)
+        console.log("loula",item)
+        console.log("aaa",objet)
+        const data = {
+          dateMvt , 
+          quantite ,
+          typeOrder , 
+          item ,
+          client
       };
       if (objet.currentStock > quantite){
         if (typeOrder ==="ACHAT"){
-        objet.currentStock = parseInt(objet.currentStock) - parseInt(quantite);}
-        else{
-        objet.currentStock = parseInt(objet.currentStock) - parseInt(quantite);
+          objet.currentStock = parseInt(objet.currentStock) - parseInt(quantite);}
+          else{
+          objet.currentStock = parseInt(objet.currentStock) - parseInt(quantite);
         }
       console.log ("ahawa"+objet)
       
-      addOrder(data).then(() => updateItems(item ,objet))
+      addOrder(data);
+      updateItems(item ,objet);
      
     }
   } 
