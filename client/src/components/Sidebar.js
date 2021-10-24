@@ -24,6 +24,32 @@ const Sidebar = () => {
                         </ul>
                     </li>
                     <li>
+                        <Link data-bs-toggle="collapse" class="nav-link px-0 align-middle" to="/list_items">
+                                <span class="ms-1 d-none d-sm-inline">Orders</span>
+                        </Link>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <Link class="nav-link px-0" to="/list_orders"><span class="d-none d-sm-inline">List</span></Link>
+                            </li>
+                            <li>
+                                <Link class="nav-link px-0" to="/add_order"><span class="d-none d-sm-inline">Add</span></Link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <Link data-bs-toggle="collapse" class="nav-link px-0 align-middle" to="/list_items">
+                                <span class="ms-1 d-none d-sm-inline">Clients</span>
+                        </Link>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <Link class="nav-link px-0" to="/list_clients"><span class="d-none d-sm-inline">List</span></Link>
+                            </li>
+                            <li>
+                                <Link class="nav-link px-0" to="/add_client"><span class="d-none d-sm-inline">Add</span></Link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <Link class="nav-link px-0" to="/categories"><span class="d-none d-sm-inline">Categories</span></Link>
                     </li>
                 </ul>

@@ -33,7 +33,7 @@ public class CategoryController {
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> updateCategory(@PathVariable(value = "id") int id,
-                                                   @RequestBody Category category) {
+                                            @RequestBody Category category) {
         return new ResponseEntity<>(categoryService.updateCategory(id, category), HttpStatus.OK);
     }
 

@@ -34,7 +34,7 @@ public class ItemController {
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> updateItem(@PathVariable(value = "id") int id,
-                                                   @RequestBody Item item){
+                                        @RequestBody Item item){
         return new ResponseEntity<>(itemService.updateItem(id, item), HttpStatus.OK);
     }
 
@@ -47,8 +47,7 @@ public class ItemController {
     @PutMapping(value = "/stock/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Item> updateStock(@PathVariable(value = "id") int id,
-                                           @RequestParam("stock") int stock){
+                                            @RequestParam("stock") int stock){
         return new ResponseEntity<>(itemService.updateStock(id, stock), HttpStatus.OK);
     }
-
 }

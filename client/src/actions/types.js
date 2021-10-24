@@ -14,3 +14,14 @@ export const ADD_CATEGORY = "ADD_CATEGORY";
 export const ERROR_ADD_CATEGORY = "ERROR_ADD_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
+export const ALL_ClIENTS = "ALL_ClIENTS";
+export const ADD_CLIENT = "ADD_CLIENT";
+export const UPDATE_CLIENT = "UPDATE_CLIENT";
+export const DELETE_CLIENT = "DELETE_CLIENT";
+export const ERROR_ADD_CLIENT = "ERROR_ADD_CLIENT";
+export const ALL_ORDERS = "ALL_ORDERS";
+export const ADD_ORDER = "ADD_ORDER";
+export const ERROR_ADD_ORDER = "ERROR_ADD_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";
+export const UPDATE_ORDER = "UPDATE_ORDER";
+    

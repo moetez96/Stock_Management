@@ -1,4 +1,4 @@
-version: "3.9"
+version: "2.2"
 services:
   eurekaserver:
     build: ./eurekaserver/
@@ -15,6 +15,8 @@ services:
       zuul.routes.item-service.url: http://item-service:8088
       zuul.routes.category-service.url: http://category-service:8089
       zuul.routes.user-service.url: http://user-service:3000
+      zuul.routes.client-service.url: http://client-service:8085
+      zuul.routes.order-service.url: http://order-service:8083
     image: "zuul" 
 
   item-service:
@@ -40,3 +42,20 @@ services:
     environment:
       eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
     image: "user-service"
+
+
+  order-service:
+    build: ./order/
+    ports:
+      - "8083:8083"
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
+    image: "order-service"
+  
+  client-service:
+    build: ./ms_client/
+    ports:
+      - "8085:8085"
+    environment:
+      eureka.client.serviceUrl.defaultZone: http://eurekaserver:8761/eureka/
+    image: "client-service"
