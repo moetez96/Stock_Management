@@ -67,24 +67,27 @@ useEffect(() => {
         console.log("obj",items)
         console.log("loula",item)
         console.log("aaa",objet)
+       let a= parseInt(item) ;
+        let b=  parseInt(client);
         const data = {
           dateMvt , 
           quantite ,
           typeOrder , 
-          item ,
-          client
+          item :a ,
+          client :b
       };
       if (objet.currentStock > quantite){
         if (typeOrder ==="ACHAT"){
           objet.currentStock = parseInt(objet.currentStock) - parseInt(quantite);}
           else{
-          objet.currentStock = parseInt(objet.currentStock) - parseInt(quantite);
+          objet.currentStock = parseInt(objet.currentStock) + parseInt(quantite);
         }
       console.log ("ahawa"+objet)
-      
+
+      console.log("data",data)
       addOrder(data);
-      updateItems(item ,objet);
-     
+      updateItems(a,objet)
+      history.push('/list_orders');
     }
   } 
 
@@ -108,6 +111,7 @@ useEffect(() => {
 
                             <Form.Label>Order Type</Form.Label>
                             <Form.Select aria-label="Floating label select Order Type"  onChange={handleTypeChange} >
+                            <option value= '' >Select Client</option>
                             <option value="ACHAT">Achat</option>
                             <option value="VENTE">Vente</option>
                            
@@ -130,7 +134,7 @@ useEffect(() => {
                                 ))}
                             </Form.Select>
                         
-                        
+                            {console.log("type",typeOrder)}
                             <Button variant="primary" onClick={handleOnSubmit}>
                 Add
               </Button>
