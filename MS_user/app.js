@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require("mongoose")
 const eurekaHelper = require('./eureka-helper');
 var bodyParser = require('body-parser');
-
+var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRoute = require('./routes/auth')
@@ -23,6 +23,8 @@ db.once("open", () => {
 
 var app = express();
 // view engine setup
+app.options('*', cors());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app .use(bodyParser.urlencoded({ extended: false }));
@@ -71,7 +73,7 @@ console.log(results);
 const eureka = new Eureka({
     instance: {
         app: 'user-service',
-        hostName: 'localhost',
+        hostName: host,
         instanceId: 'user-service:3000',
         ipAddr: localIp,
         statusPageUrl: 'http://' + localIp + ':3000',

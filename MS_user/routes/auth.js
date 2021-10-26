@@ -17,7 +17,9 @@ router.post('/login', (req, res) => {
             else {
                 bcrypt.compare(req.body.password, user.password, (error, match) => {
                     if (error) res.status(500).json(error)
-                    else if (match) res.status(200).json({token: generateToken(user), user})
+                    else if (match){
+                        res.setHeader('Access-Control-Allow-Origin', '*');
+                        res.status(200).json({token: generateToken(user), user})}
                     else res.status(403).json({error: 'passwords do not match'})
                 })
             }
@@ -40,7 +42,8 @@ router.post('/signup', (req, res) => {
 
             newUser.save()
                 .then(user => {
-                    res.status(200).json({token: generateToken(user)})
+                    res.setHeader('Access-Control-Allow-Origin', '*');
+                    res.json({token: generateToken(user)})
                 })
                 .catch(error => {
                     res.status(500).json(error)

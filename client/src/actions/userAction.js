@@ -14,7 +14,7 @@ export const login = (user) => async (dispatch) => {
     console.log(body)
 
     try {
-        const {data} = await axios.post(URL + "/user-service/api/auth/login", user );
+        const {data} = await axios.post("http://localhost:3000/api/auth/login", user );
         console.log(data)
         localStorage.setItem('user', JSON.stringify(data.user));
         localStorage.setItem('token', data.token);
@@ -33,7 +33,7 @@ export const login = (user) => async (dispatch) => {
 
 export const signup = (user) => async (dispatch) => {
     try {
-        const {data} = await axios.post(URL + "/user-service/api/auth/signup",user);
+        const {data} = await axios.post("http://localhost:3000/api/auth/signup",user);
         console.log(data)
         dispatch({
             type: REGISTER,

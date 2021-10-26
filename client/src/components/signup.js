@@ -37,7 +37,6 @@ const SignUp = () =>  {
         dispatch(signup({firstName, lastName, email, password})).then(() => {
             if(error_signup){
                 console.log('mouch fesfes')
-
             }else{
                 history.push('/sign-in')
             }

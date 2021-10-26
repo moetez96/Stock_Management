@@ -17,7 +17,7 @@ const Sidebar = () => {
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
                                 <Link class="nav-link px-0" to="/list_items"><span class="d-none d-sm-inline">List</span></Link>
-                            </li>
+                            </li> 
                             <li>
                                 <Link class="nav-link px-0" to="/add_item"><span class="d-none d-sm-inline">Add</span></Link>
                             </li>

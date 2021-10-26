@@ -114,7 +114,6 @@ const ListItems = ({getAllItems, items, getAllCategories, categories}) => {
             setItemsList(items)
             console.log(itemsList);
         }
-
     } 
     
     const categoryName = (id) => {
@@ -158,7 +157,6 @@ const ListItems = ({getAllItems, items, getAllCategories, categories}) => {
                 </InputGroup>
                 </Col>
             </Row>
-            
 
             <Table striped bordered hover style={{margin: 15}}>
                 <thead>
@@ -209,10 +207,10 @@ const ListItems = ({getAllItems, items, getAllCategories, categories}) => {
 
                             <Form.Label>Product Category</Form.Label>
                             <Form.Select aria-label="Floating label select example" value={item.category} onChange={handleCategoryChange} >
-                            <option>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value='0'>Select Category</option>
+                                {categories.map(categ => (                
+                                <option key={categ.id} value={categ.id}>{categ.name}</option>
+                                ))}
                             </Form.Select>
                             
                             <Form.Group className="mb-3">
